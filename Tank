@@ -1,0 +1,81 @@
+import java.awt.event.KeyEvent;
+
+
+public class Tank {
+	int x;
+	int y;
+	int direction = 0;
+	Bullet killah;
+	//direction 0 means up in this case
+	String name;
+	public Tank(int x, int y){
+		this.x=x;
+		this.y=y;
+	}
+	public void draw(){
+		if(killah != null){
+			killah.draw();
+		}
+		// draw the Tank body
+		Zen.setColor(1,254,237);
+		if(direction == 0|| direction==2)
+			Zen.fillRect(x-10, y-15, 20, 30);
+		else
+			Zen.fillRect(x-15,y-10,30,20);
+
+		//draw the Tank gun
+		Zen.setColor(0,0,0);
+		if(direction==0 || direction==2)
+			Zen.fillRect(x-2, y-(2-direction)* 10,4, 20);
+		if(direction == 1 || direction == 3)
+			Zen.fillRect(x-(direction-1)*10,y-2,2,4);
+
+		//all pre-decided
+		if (direction==0){
+			//draw facing up
+		}
+		else if(direction==1){
+			//draw facing right
+		}
+		else if(direction==2){
+			//draw facing down
+		}
+		else if(direction==3){
+			//draw facing left
+		}
+
+
+	}
+	public void move(){
+		// move method
+		//if statements for keys
+		//when the keys are pressed, x and y changes
+		if(Zen.isVirtualKeyPressed(KeyEvent.VK_UP)){
+			direction = 0;
+			y=y-7;
+		}
+		if(Zen.isVirtualKeyPressed(KeyEvent.VK_SPACE)){
+			direction = 3;
+			x=x-7;
+		}
+		if(Zen.isVirtualKeyPressed(KeyEvent.VK_DOWN)){
+			direction = 2;
+			y=y+7;
+		}
+		if(Zen.isVirtualKeyPressed(KeyEvent.VK_RIGHT)){
+			direction = 1;
+			x=x+7;
+		}
+		if(Zen.isVirtualKeyPressed(KeyEvent.VK_SPACE)){
+			killah = new Bullet(x,y,direction);
+		}
+		// write it to the firebase so that everyone can see it
+		Zen.write("juix",x);
+		Zen.write("juiy",y);
+		Zen.write("juid",direction);
+		if(killah != null){
+			killah.move();
+		}
+
+	}
+}
