@@ -1,0 +1,54 @@
+
+public class TankGame {
+
+	public static void main(String[] args){
+		Zen.connect("techlabtanks");
+		Zen.create(500, 500);
+		Zen.fillRect(0, 0, 500, 500);
+
+
+		Tank me = new Tank(250,250);
+		me.draw();
+		Zen.sleep(3000);
+		TankBuddy Jayee = new TankBuddy("Jayee");
+		TankBuddy jasper = new TankBuddy("jasper");
+		TankBuddy ojas = new TankBuddy("ojas");
+		TankBuddy ryan = new TankBuddy("ryan");
+		TankBuddy isaac = new TankBuddy("isaac");
+		TankBuddy keshav= new TankBuddy("keshav");
+
+		
+
+		while(true) {
+			//draw background
+			Zen.setColor(255,255,255);
+			Zen.fillRect(0,0,500,500);
+
+			// Draw and move tank
+			me.draw();
+			me.move();
+			
+			ryan.draw();
+			ryan.move();
+			
+			ojas.draw();
+			ojas.move();
+			
+			Jayee.draw();
+			Jayee.move();
+			
+			jasper.draw();
+			jasper.move();
+			
+			isaac.draw();
+			isaac.move();
+			
+			keshav.draw();
+			keshav.move();
+
+			//flip buffer and sleep - essential ingredient 
+			Zen.flipBuffer();
+			Zen.sleep(33);
+		}
+	}
+}
